@@ -14,11 +14,11 @@ exports.soma = functions.database.ref('movimentacoes/{dia}')
     let saidas = 0
 
     Object.keys(movimentacoes).forEach(m => {
-      //if(parseFloat(movimentacoes[m]) >= 0.0){
+      if(movimentacoes[m].valor < 0){
+        saidas += parseFloat(movimentacoes[m].valor)
+      }else{
         entradas += parseFloat(movimentacoes[m].valor)
-      //}else{
-        //saidas += parseFloat(movimentacoes[m].valor)
-      //}
+      }
     })
 
     return mesesRef.transaction(current => {
